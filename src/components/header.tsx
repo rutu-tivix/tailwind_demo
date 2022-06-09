@@ -47,18 +47,18 @@ function Header() {
       <div
         className={`${
           isNavOpen ? "flex" : "hidden"
-        } w-full lg:flex  lg:flex-1 lg:items-center lg:w-auto  `}
+        } w-full lg:flex justify-center  lg:items-center lg:w-auto  `}
       >
         <div className="text-sm lg:flex-grow  ">
           <Link
             to="/"
-            className=" lg:inline-flex flex items-center lg:mt-4 text-teal-200 uppercase text-white mx-4"
+            className=" lg:inline-flex flex items-center lg:mt-2 sm:mt-4 md:mt-4 text-teal-200 uppercase text-white mx-4 hover:underline hover: underline-offset-8"
           >
             Top Games
           </Link>
           <Link
             to="/top_stream"
-            className=" lg:inline-flex flex items-center lg:mt-4 text-teal-200 uppercase text-white mx-4"
+            className=" lg:inline-flex flex items-center lg:mt-2 sm:mt-4 md:mt-4 text-teal-200 uppercase text-white mx-4 hover:underline hover: underline-offset-8"
           >
             Top Live Streams
           </Link>
