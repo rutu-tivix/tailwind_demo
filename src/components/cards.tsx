@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Textfit } from "react-textfit";
 
 import { StreamObject } from "../types";
 
@@ -43,27 +44,35 @@ function Cards(props: Props) {
           </div>
         </div>
       ) : (
-        <div className="max-w-xs  rounded overflow-hidden shadow-lg transform transition duration-500 hover:scale-110">
-          <img
-            className="w-full"
-            src={props.data?.thumbnail_url}
-            alt="Mountain"
-          />
+        <Link to={`/streams/${props.data?.id}`}>
+          <div className="max-w-xs  rounded overflow-hidden shadow-lg transform transition duration-500 hover:scale-110">
+            <img
+              className="w-full"
+              src={props.data?.thumbnail_url}
+              alt="Mountain"
+            />
 
-          <div className="px-6 py-4">
-            <div className="font-bold text-xl mb-2">{props.data?.name}</div>
+            <div className="px-6 py-4">
+              <div className="font-bold text-xl mb-2">
+                <Textfit mode="single" forceSingleModeWidth={false}>
+                  {props.data.name?.length > 40
+                    ? props.data?.name.slice(0, 40) + "..."
+                    : props.data.name}
+                </Textfit>
+              </div>
+            </div>
+            <div className="flex justify-center my-4">
+              <Link to={`/streams/${props.data?.id}`}>
+                <button
+                  type="button"
+                  className="text-white bg-brown hover:bg-light_brown  uppercase font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 flex justify-center"
+                >
+                  Go to channel
+                </button>
+              </Link>
+            </div>
           </div>
-          <div className="flex justify-center my-4">
-            <Link to={`/streams/${props.data?.id}`}>
-              <button
-                type="button"
-                className="text-white bg-brown hover:bg-light_brown  uppercase font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 flex justify-center"
-              >
-                Go to channel
-              </button>
-            </Link>
-          </div>
-        </div>
+        </Link>
       )}
     </div>
   );
