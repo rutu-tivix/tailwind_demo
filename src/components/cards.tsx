@@ -11,61 +11,59 @@ interface Props {
 
 function Cards(props: Props) {
   const [loadedImage, setLoadImage] = useState(false);
-
-  console.log(loadedImage);
-
   return (
     <div className="p-8">
       {props.gameStream ? (
-        <div
-          className="max-w-xs relative rounded overflow-hidden shadow-lg transform transition duration-500 hover:scale-110 cursor-pointer"
-          onClick={() =>
-            window.open(`https://twitch.tv/${props.data?.user_name}`, "_blank")
-          }
+        <a
+          rel="noreferrer"
+          href={"https://twitch.tv/" + props.data?.user_name}
+          className="link"
+          target="_blank"
         >
-          <img
-            className="w-full"
-            src={
-              loadedImage
-                ? props.data?.thumbnail_url
-                : "https://via.placeholder.com/300?text=Image+Is+Loading...."
-            }
-            alt="Mountain"
-            onLoad={() => setLoadImage(true)}
-          />
-          {props?.data?.type === "live" && (
-            <div className="absolute w-20 py-2.5 top-5 left-8 inset-x-0 bg-red text-white text-xs text-center leading-4">
-              Live
-            </div>
-          )}
+          <div className="max-w-xs relative rounded overflow-hidden shadow-lg transform transition duration-500 hover:scale-110 cursor-pointer">
+            <img
+              className="w-full"
+              src={
+                loadedImage
+                  ? props.data?.thumbnail_url
+                  : "https://via.placeholder.com/300?text=Image+Is+Loading...."
+              }
+              alt="Mountain"
+              onLoad={() => setLoadImage(true)}
+            />
+            {props?.data?.type === "live" && (
+              <div className="absolute w-20 py-2.5 top-5 left-8 inset-x-0 bg-red text-white text-xs text-center leading-4">
+                Live
+              </div>
+            )}
 
-          <div className="px-6 py-4">
-            <div className="font-bold text-xl mb-2">
-              {" "}
-              <Textfit mode="single" forceSingleModeWidth={false}>
-                {props.data.title?.length > 40
-                  ? props.data?.title.slice(0, 40) + "..."
-                  : props.data.title}
-              </Textfit>
+            <div className="px-6 py-4">
+              <div className="font-bold text-xl mb-2">
+                {" "}
+                <Textfit mode="single" forceSingleModeWidth={false}>
+                  {props.data.title?.length > 40
+                    ? props.data?.title.slice(0, 40) + "..."
+                    : props.data.title}
+                </Textfit>
+              </div>
             </div>
-          </div>
 
-          <div className="flex justify-center my-4">
-            <button
-              type="button"
-              className="text-white bg-brown hover:bg-light_brown  font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 flex justify-center"
-            >
-              <a
-                rel="noreferrer"
-                href={"https://twitch.tv/" + props.data?.user_name}
-                className="link"
-                target="_blank"
+            <div className="flex justify-center my-4">
+              <button
+                type="button"
+                className="text-white bg-brown hover:bg-light_brown font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 flex justify-center cursor-pointer"
+                onClick={() =>
+                  window.open(
+                    `https://twitch.tv/${props.data?.user_name}`,
+                    "_blank"
+                  )
+                }
               >
                 watch {props.data?.user_name}'s' stream
-              </a>
-            </button>
+              </button>
+            </div>
           </div>
-        </div>
+        </a>
       ) : (
         <Link to={`/streams/${props.data?.id}`}>
           <div className="max-w-xs  rounded overflow-hidden shadow-lg transform transition duration-500 hover:scale-110">
