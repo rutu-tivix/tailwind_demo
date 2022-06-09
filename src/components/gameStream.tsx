@@ -38,7 +38,7 @@ function GameStream() {
         <div className="flex flex-wrap justify-center ">
           {data?.map((item:StreamObject) => {
             return (
-              <div className="">
+              <div key={item.id}>
                 <Cards data={item} gameStream={true} />
               </div>
             );

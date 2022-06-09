@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Cards from "./cards";
 import api from "../services";
 import SideBar from "./sidebar";
-import {StreamObject} from "../types"
+import { StreamObject } from "../types";
 
 function Games() {
   const [data, setData] = useState<Array<StreamObject>>([]);
@@ -34,9 +34,9 @@ function Games() {
           Most Popular Games
         </div>
         <div className="flex flex-wrap justify-center ">
-          {data?.map((item:StreamObject) => {
+          {data?.map((item: StreamObject) => {
             return (
-              <div className="">
+              <div key={item.id}>
                 <Cards data={item} gameStream={false} />
               </div>
             );
