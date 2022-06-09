@@ -7,5 +7,5 @@ export type StreamObject = {
   box_art_url: string | undefined;
   game_name: string;
   viewer_count: number;
-  title: string | undefined;
+  title: string;
 };
